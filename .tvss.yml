@@ -1,5 +1,0 @@
-tvss:
-  origin_path: "/Users/michael/Downloads/extracted/"
-  destination_path: "/Users/michael/Downloads/extracted/SORTED"
-  file_ext: [ '.mkv', '.avi', '.mp4' ]
-  regex: "(s(\d{2})e\d{2})"

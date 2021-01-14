@@ -1,0 +1,17 @@
+[paths]
+origin_path =  /Users/michael/Downloads/extracted/
+destination_path = /Users/michael/Downloads/extracted/SORTED
+
+[files]
+video_file_ext =
+    mkv
+    avi
+    mp4
+    mov
+
+archive_file_ext =
+    zip
+    rar
+    gz
+
+regex = (s(\d{2})e\d{2})
