@@ -1,0 +1,28 @@
+{
+  "default_paths": {
+    "ORIGIN_PATH": "Downloads/extracted/",
+    "DESTINATION_PATH": "Downloads/extracted/SORTED"
+  },
+  "extensions": {
+    "FILE_EXTENSIONS": [
+      "mkv",
+      "avi",
+      "mp4",
+      "mov"
+    ],
+    "ARCHIVE_EXTENSIONS": [
+      "zip",
+      "rar",
+      "tar.gz"
+    ]
+  },
+  "LANGUAGES": {
+    "de": "Staffel",
+    "en": "Season",
+    "es": "Temporada",
+    "fr": "Saison",
+    "it": "Stagione",
+    "ru": "Sezon"
+  },
+  "REGEX": "s(\\d{2})e\\d{2}"
+}

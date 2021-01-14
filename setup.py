@@ -32,13 +32,13 @@ setup(
         )
 
 """
-Copying the config file into the desired location ($HOME/.conf/tvss/.tvss)
+Copying the config file into the desired location ($HOME/.conf/tvss/tvss.json)
 If the file already exists it will get overwritten.
 Should work for all platforms.
 """
 conf_path = os.path.join(os.path.expanduser('~'), '.config')
 conf_tvss_path = os.path.join(conf_path, 'tvss')
-conf_file_path = os.path.join(conf_tvss_path, '.tvss')
+conf_file_path = os.path.join(conf_tvss_path, 'tvss.json')
 
 if conf_path:
     if not os.path.exists(conf_tvss_path):
@@ -54,6 +54,6 @@ if conf_path:
             sys.exit(e)
     
     try:
-        copy2('.tvss', os.path.join(conf_path, 'tvss', '.tvss'), follow_symlinks = True)
+        copy2('tvss.json', os.path.join(conf_path, 'tvss', 'tvss.json'), follow_symlinks = True)
     except FileExistsError as e:
         sys.exit(e)
