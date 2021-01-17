@@ -105,8 +105,8 @@ something like the following will get printed on the screen:
 ```bazaar
 ACTUAL SETTINGS FOR SORTIER:
 Regex for seasons: (s([0-9]{2})e[0-9]{2})
-Origin/Source path: /Users/<user>/Downloads/extracted
-Destination path: /Users/<user>/Downloads/extracted/SORTED
+Origin/Source path: Downloads/extracted
+Destination path: Downloads/extracted/SORTED
 File extensions available: ['.mkv', '.avi', '.mp4', '.mov']
 Languages available: ['de', 'en', 'es', 'fr', 'it', 'ru']
 Language set: en
@@ -123,33 +123,30 @@ There are two paths to be set.
 #### Origin/Source path
 
 This is the path where the ripped or downloaded files are to find at. In the settings you'll see the whole path. Which by default is set
-to `<your home directory>/>Downloads/extracted`. In which `<your home directory>` is substituted with you actual path depending on your operating
-system.
+to `Downloads/extracted`.
 
-Followed by that is the relative path to your source folder, where all the files are in. You can set this path to any location under your home
-dierectory, as long as one won't need administrator rights to read from it. Most of the time, it will be your downloads folder or any subfolders under
-it. You just need to provide the parent folder, where all other folders, that containing the video files are contained in.
+That is the relative path (from the home directory) to your source folder, where all the files are in. You can set this path to any location under
+your home directory, as long as one won't need administrator rights to read from it. Most of the time, it will be your downloads folder or any
+subfolders beneath it. You just need to provide the parent folder, where all other folders, that containing the video files are contained in.
 
-In the example above, your folder structure would look something like this:
+In the example above, your folder structure would look something like this (assuming you're on Mac OSX):
 
 ```
-+-+ Users 
-| |
-| +--+ Downloads
-| |  |
-| |  +--+ extracted
-| |  |  |
-| |  |  +--+ my.first.show.episode
-| |  |  |  +--+ my.first.show.video.file.s01e01.mkv
-| |  |  +-- my.second.show.episode
-| |  |  |  +--+ my.second.show.video.file.s01e02.mkv
-| |  |  +-- my.third.show.episode
-| |  |  |  +--+ my.third.show.video.file.s01e03.mkv
-| |  |  +-- a-different-show_dfjgr
-| |  |  |  +--+ a-different-show.video.file.s05e01.mkv
-| |  |  +-- a-different-show_dfjgr
-| |  |  |  +--+ a-different-show.video.file.s05e02.mkv
-| |  |  +-- ...
+└── Users/
+    └── <user name>/
+        └── Downloads/
+            └── extracted/
+                ├── The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── The.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── The.Show.S02E03.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E03.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── Another.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── Another.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── Another.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── Another.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── ...└── Another.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
 ```
 
 In which `extracted` is the parent folder of all the video files.
@@ -160,27 +157,42 @@ All the video files will be copied to this path.
 
 This path by default is set to `<your home directory>/Downloads/extracted/SORTED`. It's the same principal as of the origin path.
 
-As mentioned above, the files will be sorted into folders named after the seasons. This could look something like this:
+As mentioned above, the files will be sorted into folders named after the show and subfolders named after the seasons. This could look something like
+this:
 
 ```
-+-+ Users 
-| |
-| +--+ Downloads
-| |  |
-| |  +--+ extracted
-| |  |  |
-| |  |  +--+ A Tv Show
-| |  |  |  |
-| |  |  |  +--+ Season 01
-| |  |  |  |  +--+ A Tv Show s01e01.mkv
-| |  |  |  |  +--+ A Tv Show s01e02.mkv
-| |  |  |  |  +--+ A Tv Show s01e03.mkv
-| |  |  |  |  +--+ ...
-| |  |  |  +--+ Season 02
-| |  |  |  |  +--+ A Tv Show s02e01.mkv
-| |  |  |  |  +--+ A Tv Show s02e02.mkv
-| |  |  |  |  +--+ A Tv Show s02e03.mkv
-| |  |  |  |  +--+ ...
+└── Users/
+    └── <user name>/
+        └── Downloads/
+            └── extracted/
+                ├── The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── The.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── The.Show.S02E03.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── The.Show.S02E03.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── Another.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── Another.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── Another.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+                │   └── Another.Show.S02E02.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+                ├── ...
+                └── SORTED/
+                    ├── The Show/
+                    │   ├── Season 01/
+                    │   │   ├── The Show s01e01.mkv
+                    │   │   ├── The Show s01e02.mkv
+                    │   │   ├── The Show s01e03.mkv
+                    │   │   └── ...
+                    │   └── Season 02/
+                    │       ├── The Show s02e01.mkv
+                    │       ├── The Show s02e02.mkv
+                    │       ├── The Show s02e03.mkv
+                    │       └── ...
+                    └── Another Show/
+                        └── Season 02/
+                            ├── Another s02e01.mkv
+                            ├── Another s02e02.mkv
+                            └── ...
 ```
 
 #### Changing the paths

@@ -74,8 +74,8 @@ if conf_path:
 
 conf = read_config_file()
 
-conf['default_paths']['ORIGIN_PATH'] = "Downloads/extracted"
-conf['default_paths']['DESTINATION_PATH'] = "Downloads/extracted/SORTED"
+conf['default_paths']['ORIGIN_PATH'] = os.path.join("Downloads", "extracted")
+conf['default_paths']['DESTINATION_PATH'] = os.path.join("Downloads", "extracted", "SORTED")
 
 try:
     with open(conf_file_path, "w") as f:
