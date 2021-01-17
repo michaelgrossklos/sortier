@@ -1,20 +1,21 @@
-== Sortier
-
+:sectionhook:
 :toc:
+
+= Sortier
 
 This tool is capable to sort any kind of tv shows.
 During the process, all video files will be renamed, sorted into folders named after the season they’re belonging to and saved wherever you desire.
 By that it is possible to upload the files to your media server like Plex or Emby.
 These media centers need the correct naming convention in order to find all the metadata like posters, background images and other information.
 
-The seasons need to be in a folder called after the season. F.e.:
+The seasons need to be in a folder called after the season. F.e.: `Season 01`
 
-``Season 01''. Also, the videos itself need to follow these kind opf
-conventions. Files need to be named like this: ``
+Also, the videos itself need to follow these kind of conventions.
+Files need to be named like this:
 
-My New Show (2011) s01e01.mkv''.
+`My New Show (2011) s01e01.mkv.`
+
 This very tool does all that for you.
-
 
 === Installation
 
@@ -25,7 +26,7 @@ To install Sortier just copy the following line to your Terminal or command line
 I assume you have Python >= 3.7 already installed on your machine.
 If not, go to https://www.python.org/ and follow the instructions there.
 
-=== Using the tool
+=== Usage
 
 First of all, it is important to know, that you always can use the
 `--help` option.
