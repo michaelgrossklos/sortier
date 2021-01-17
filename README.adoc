@@ -301,7 +301,7 @@ The file format is JSON and very easy to understand.
 This is what it looks like initally:
 
 [source,json]
-include::/blob/main/sortier.json[]
+include::https://raw.githubusercontent.com/michaelgrossklos/sortier/main/sortier.json?token=ABSN5FHO4G52TQC6UQJC4KTAATFA6[]
 
 ....
 {
