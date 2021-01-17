@@ -6,6 +6,8 @@
 
 = Sortier
 
+=== What it does
+
 This tool is capable to sort any kind of tv shows.
 During the process, all video files will be renamed, sorted into folders named after the season they’re belonging to and saved wherever you desire.
 By that it is possible to upload the files to your media server like Plex or Emby.
@@ -299,29 +301,7 @@ The file format is JSON and very easy to understand.
 This is what it looks like initally:
 
 [source,json]
-....
-{
-  "default_paths": {
-    "ORIGIN_PATH": "Downloads/extracted",
-    "DESTINATION_PATH": "Downloads/extracted/SORTED"
-  },
-  "FILE_EXTENSIONS": [
-    ".mkv",
-    ".avi",
-    ".mp4",
-    ".mov"
-  ],
-  "LANGUAGES": {
-    "de": "Staffel",
-    "en": "Season",
-    "es": "Temporada",
-    "fr": "Saison",
-    "it": "Stagione",
-    "ru": "Sezon"
-  },
-  "REGEX": "(s([0-9]{2})e[0-9]{2})"
-}
-....
+include::sortier.json[]
 
 The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
 Where `<users home directory>` gets substituted with the path to your users home directory.
@@ -355,4 +335,27 @@ Afterwards it still is possible to use the commmand to change it.
 [WARNING]
 Please do not change the location of the file.
 Because Sortier won't work anymore.
+
+== The future
+
+Well, after the launch is before the launch, isn't it?
+So there are some additional features planed for future versions.
+
+=== Getting titles from The Movie Database
+:hide-uri-scheme:
+The Movie Database (TMDb) https://www.themoviedb.org is a free Service which provides lots of informations about movies and tv-shows.
+Media centers like Plex getting there data (like posters, bakcground images, descriptions, actors a.s.f.) from that website.
+
+Lukely for us, it also has an API. So we are capable to get this data to.
+But the only thing we really need, is the correct title.
+Since the media server needs the right one according to TMDb, the tool could search for a title, given by the user and find the right one to be used for the folder and file names.
+
+=== Setting language permanetly
+
+Probably the next feature to implement will be this one.
+Just to be able to set the language permanently without editing the config file.
+The option will still be at hand.
+But most of the users don't need to change that option that much.
+
+== Contribution
 
