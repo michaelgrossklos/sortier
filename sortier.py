@@ -223,20 +223,6 @@ def start_logging(debug) -> logging.Logger:
 
 @click.group()
 @click.option(
-        "--origin-path", "-o",
-        required = False,
-        type = click.Path(exists = True, resolve_path = True, writable = True, readable = True,
-                          path_type = click.STRING),
-        help = "The path to the source files to sort"
-        )
-@click.option(
-        "--destination-path", "-d",
-        required = False,
-        type = click.Path(exists = True, resolve_path = True, writable = True, readable = True,
-                          path_type = click.STRING),
-        help = "The path where to save the sorted files"
-        )
-@click.option(
         "--language", "-l",
         required = False,
         default = "de",

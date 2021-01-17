@@ -1,5 +1,8 @@
-:sectionhook:
+:sectanchors:
 :toc:
+:toclevels: 3
+:icons: font
+:iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
 
 = Sortier
 
@@ -28,6 +31,8 @@ If not, go to https://www.python.org/ and follow the instructions there.
 
 === Usage
 
+==== Help
+
 First of all, it is important to know, that you always can use the
 `--help` option.
 This will print someting like this:
@@ -41,17 +46,18 @@ Usage: sortier [OPTIONS] COMMAND [ARGS]...
   Emby. So it can find all meta data needed.
 
 Options:
-  -o, --origin-path PATH       The path to the source files to sort
-  -d, --destination-path PATH  The path where to save the sorted files
-  -l, --language TEXT          Sets the language for season names
-  --debug / --no-debug         Turn debug mode on
-  --delete-folders BOOLEAN     Delete the source folder after copying the file
-  --help                       Show this message and exit.
+  -l, --language TEXT       Sets the language for season names
+  --debug / --no-debug      Turn debug mode on
+  --delete-folders BOOLEAN  Delete the source folder after copying the file
+  --help                    Show this message and exit.
 
 Commands:
   addextensions  Extends the list of file extensions.
+  destpath       Changes the destination path permanently
+  oripath        Changes the origin path permanently
   settings       Shows the actual settings
   titles         The titles of the shows to be sorted.
+
 ....
 
 As you can see in the first line, you first (and always) need to call the program itself by using `sortier`.
@@ -75,21 +81,24 @@ Some do not.
 For Example `settings` does not need any argument.
 If you set one, you would get an error.
 
-A complete line for using Sortier could look something like that:
+A complete line for using Sortier could look something like this:
 
 `sortier -l=en --delete-folders titles "my first show" "my second show"`
 or
 
 `sortier titles "my fisrt show" "my second show"` if you wouldn’t use any options.
 
-*IMPORTANT* to know is, that you can’t use two commands at the same time, whereas you are able to use more than one option at ones.
+IMPORTANT: Important to know is, that you can’t use two commands at the same time, whereas you are able to use more than one option at ones.
 The order in which you specify the options does not matter.
 
+== Commands
+
+'''
 === Renaming files
 
 The files to be renamed are only the video files that get stored into the destination folder.
 
-==== File name a.k.a show titles (required)
+==== File name a.k.a tv-show titles (required)
 
 In order to rename - and more importantly - find the right files, you need to provide the titles of the show.
 
@@ -109,6 +118,8 @@ How the video file itself is named, does not matter, as long as it holds the sea
 For example `my.first.show.s01e20`.
 In which `s01e20` means season 1, episode 20. Without that, Sortier is incapable of sorting the episodes and will stop running with printing out an error message.
 
+'''
+
 === File extensions
 
 Not always, but most of the time, are the provided default file extensions sufficient.
@@ -123,6 +134,8 @@ The extension you’re adding, will get saved permanently.
 So, you don’t need to set them the next time you use Sortier.
 
 If you want to know what extensions are already provided, just use the command `sortier settings` without any arguments, and an overview of all settings gets printed on the screen.
+
+'''
 
 === Show all settings
 
@@ -147,6 +160,7 @@ https://github.com/michaelgrossklos/sortier
 === Setting the paths
 
 There are two paths to be set.
+The origin path and the destination path.
 
 ==== Origin/Source path
 
@@ -228,14 +242,117 @@ This could look something like this:
                             └── ...
 ....
 
-==== Changing the paths
+== Options
 
-To change the origin path you can use a dedicated option
-`--origin-path="/Downlaods/subfolder/any_other_folder"`.
-The path needs to be relative to you home folder.
-Notice, that the path will not be permanently changed.
-Just for that one time.
-To change it permanently, you need to change the config file itself.
-You can read about that a bit further down below.
+=== Language
 
-For the destination path you use `--destination-path` in the same manor as with the origin path.
+If you set the language, it really is not much what changes.
+The only thing that changes is how the folder for the seasons gets named.
+In english it will be `Season`.
+In German `Staffel` and in french `Saison` and so on.
+You can set the language by eather use the long or the short version of this option.
+
+`--language en` or `-l en`
+
+The default is German.
+
+These are the languages available:
+
+- en => English => Season
+- de => German => Staffel
+- fr => French => Saison
+- it => Italian => Stagione
+- ru => Russian => Sezon
+- es => Spanish => Temporada
+
+TIP: Actually, there is no functionality to permanently set the language.
+So you have to use it every time you use Sortier.
+
+== Flags
+
+Flags are a kind of options.
+The difference is, that these don't receive any arguments like options do.
+You just use the flag like so `--flag`
+
+=== Delete folders
+
+If you use the flag `--delete-folders` without any arguments, all source folders will get deleted.
+
+[WARNING]
+Use this functionality with caution.
+
+=== Debug mode
+
+Sometimes one needs to debug.
+Users usually do not need this mode.
+You can use `--debug` every time you want the debug mode to be switched on.
+
+What it does is very simple.
+During the execution of Sortier, you will see some messages on the command line.
+These are giving some hints what the program actually does.
+
+== Configuration file
+
+During the installation Sortier saves a small configuration file.
+The file format is JSON and very easy to understand.
+
+This is what it looks like initally:
+
+[source,json]
+....
+{
+  "default_paths": {
+    "ORIGIN_PATH": "Downloads/extracted",
+    "DESTINATION_PATH": "Downloads/extracted/SORTED"
+  },
+  "FILE_EXTENSIONS": [
+    ".mkv",
+    ".avi",
+    ".mp4",
+    ".mov"
+  ],
+  "LANGUAGES": {
+    "de": "Staffel",
+    "en": "Season",
+    "es": "Temporada",
+    "fr": "Saison",
+    "it": "Stagione",
+    "ru": "Sezon"
+  },
+  "REGEX": "(s([0-9]{2})e[0-9]{2})"
+}
+....
+
+The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
+Where `<users home directory>` gets substituted with the path to your users home directory.
+The path depends on the operating system you are using.
+On Windows for example, the path could look like this
+`C:\Users\<current user name>\.confing\sortier\sortier.json>`.
+
+=== Changing the config
+
+To change anything, you just need to open the file in a text editor.
+It doesn't matter which one.
+But beforehand, you should know a little bit about JSON itself.
+You can find planty of informations here: https://www.json.org/json-en.html
+
+==== The regex part
+
+If you don't know what regex is, you're probably not able to change that part.
+Because, if you do something wrong, Sortier won't work anymore.
+This regex is the "code" that finds the seasons.
+
+*Normaly, one does not need to change that part.*
+
+==== Any other parts
+
+Other than the regex, you pretty much can change anyting.
+Adding languages for example.
+As you already know, the file extentions can be changed via a command.
+But if you want, you can do it in this file.
+Afterwards it still is possible to use the commmand to change it.
+
+[WARNING]
+Please do not change the location of the file.
+Because Sortier won't work anymore.
+
