@@ -1,5 +1,7 @@
+import json
 import os
 import sys
+from pathlib import Path
 from shutil import copy2
 
 from setuptools import setup
@@ -7,7 +9,7 @@ from setuptools import setup
 setup(
         name = "sortier",
         version = "1.0",
-        url = "https://github.com/michaelgrossklos/tvshowsorter",
+        url = "https://github.com/michaelgrossklos/sortier",
         author = "Michael Grossklos",
         description = "Sorting ripped or downloaded tv-shows into folders named after the seasons they're belonging to",
         author_email = "mail@grossklos.com",
@@ -40,14 +42,22 @@ Copying the config file into the desired location ($HOME/.conf/tvss/sortier.json
 If the file already exists it will get overwritten.
 Should work for all platforms.
 """
-conf_path = os.path.join(os.path.expanduser('~'), '.config')
+conf_path = os.path.join(Path.home(), '.config')
 conf_sortier_path = os.path.join(conf_path, 'sortier')
 conf_file_path = os.path.join(conf_sortier_path, 'sortier.json')
+
+
+def read_config_file():
+    with open(conf_file_path, "r") as f:
+        conf = json.load(f)
+    
+    return conf
+
 
 if conf_path:
     if not os.path.exists(conf_sortier_path):
         try:
-            os.mkdir(conf_sortier_path)
+            Path(conf_sortier_path).mkdir(parents = True, exist_ok = True)
         except FileNotFoundError as e:
             print(e)
     
@@ -61,3 +71,18 @@ if conf_path:
         copy2('sortier.json', os.path.join(conf_path, 'sortier', 'sortier.json'), follow_symlinks = True)
     except FileExistsError as e:
         sys.exit(e)
+
+conf = read_config_file()
+
+conf['default_paths']['ORIGIN_PATH'] = "Downloads/extracted"
+conf['default_paths']['DESTINATION_PATH'] = "Downloads/extracted/SORTED"
+
+try:
+    with open(conf_file_path, "w") as f:
+        json.dump(conf, f, indent = 4)
+except FileNotFoundError as e:
+    print(e)
+except PermissionError as e:
+    print(e)
+except Exception as e:
+    print(e)

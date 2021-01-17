@@ -10,7 +10,7 @@ Files need to be named like this: "My New Show (2011) s01e01.mkv". This very too
 ### Installation
 
 To install Sortier just copy the following line to your Terminal or command line:
-`pip3 install git+https://github.com/michaelgrossklos/tvshowsorter.git`
+`pip3 install git+https://github.com/michaelgrossklos/sortier.git`
 
 I assume you have Python >= 3.7 already installed on your machine. If not, go to https://www.python.org/ and follow the instructions there.
 
@@ -103,7 +103,7 @@ As you are able to change most of the settings, you need to know the actual stat
 something like the following will get printed on the screen:
 
 ```bazaar
-ACTUAL SETTINGS FOR Sortier:
+ACTUAL SETTINGS FOR SORTIER:
 Regex for seasons: (s([0-9]{2})e[0-9]{2})
 Origin/Source path: /Users/<user>/Downloads/extracted
 Destination path: /Users/<user>/Downloads/extracted/SORTED
@@ -113,7 +113,7 @@ Language set: en
 Season is called: Season
 
 You can find more information on:
-https://github.com/michaelgrossklos/tvshowsorter
+https://github.com/michaelgrossklos/sortier
 ```
 
 ### Setting the paths

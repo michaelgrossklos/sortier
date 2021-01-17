@@ -1,5 +1,5 @@
 """
-TV Show Sorter: Sorting ripped or downloaded tv-shows into folders
+Sortier: Sorting ripped or downloaded tv-shows into folders
     Copyright (C) 2021  Michael Grossklos (mail@grossklos.com)
 
     This program is free software: you can redistribute it and/or modify
@@ -29,10 +29,6 @@ import click
 
 
 class Sortier(object):
-    """
-    TODO: Destination path needs to be in a parent folder named after the show. Not just directly in the seasons folder.
-    TODO: Because, if there are several shows, they would all be sorted into the same season folders.
-    """
     
     def __init__(self, origin_path, destination_path, delete_folders, debug = False, \
                  language =
@@ -51,19 +47,45 @@ class Sortier(object):
         self.delete_folders = delete_folders or False
         
         if self.delete_folders:
-            message("warning", 'DELETING source folders is set!')
-        
-        try:
-            os.chdir(home_path(self.conf['default_paths']['ORIGIN_PATH']))
-            self.LOG.debug('Current working path: ' + os.getcwd())
-        except FileNotFoundError as e:
-            sys.exit(e)
+            message("warning", 'DELETING source folders is ON!')
     
     def read_config_file(self) -> dict:
         with open(self.config_file_path, "r") as f:
             conf = json.load(f)
         
         return conf
+    
+    def change_path_settings(self, origin_path = None, destination_path = None):
+        if origin_path:
+            path = home_path(origin_path)
+        else:
+            path = home_path(destination_path)
+        
+        self.LOG.debug("Trying to change path: " + path)
+        
+        self.LOG.debug("Reading config file ...")
+        conf = self.read_config_file()
+        
+        if origin_path and conf['default_paths']['ORIGIN_PATH'] != origin_path:
+            conf['default_paths']['ORIGIN_PATH'] = origin_path
+        elif destination_path and conf['default_paths']['DESTINATION_PATH'] != destination_path:
+            conf['default_paths']['DESTINATION_PATH'] = destination_path
+        else:
+            message("error", "Path: " + path + " already set. Type 'sortier settings' to see all path")
+            return
+        
+        try:
+            self.LOG.debug("Writing path to config file...")
+            with open(self.config_file_path, "w") as f:
+                json.dump(conf, f, indent = 4)
+        except FileNotFoundError as e:
+            self.LOG.debug(e)
+        except PermissionError as e:
+            self.LOG.debug(e)
+        except Exception as e:
+            self.LOG.debug(e)
+        
+        message("info", "Path: " + path + " changed successfully")
     
     def extend_file_extensions(self, file_extensions):
         self.LOG.debug("Trying to add file extensions: " + str(file_extensions))
@@ -89,7 +111,7 @@ class Sortier(object):
                 except Exception as e:
                     self.LOG.debug(e)
             else:
-                message("error", "Extension already available. Type: 'sortier settings' to see all extensions")
+                message("error", "Extensions already available. Type: 'sortier settings' to see all extensions")
     
     def echo_settings(self):
         click.clear()
@@ -102,9 +124,15 @@ class Sortier(object):
         click.secho("Language set: " + self.language, fg = "blue")
         click.secho("Season is called: " + self.season + "\n", fg = "blue")
         click.secho("More information on:", fg = "black", bg = "cyan", bold = True)
-        click.secho("https://github.com/michaelgrossklos/tvshowsorter" + "\n", fg = "cyan", bold = True)
+        click.secho("https://github.com/michaelgrossklos/sortier" + "\n", fg = "cyan", bold = True)
     
     def walk_origin_show_files(self) -> None:
+        try:
+            os.chdir(home_path(self.conf['default_paths']['ORIGIN_PATH']))
+            self.LOG.debug('Current working path: ' + os.getcwd())
+        except FileNotFoundError as e:
+            sys.exit(e)
+        
         for f in listdir('.'):
             self.LOG.debug(self.titles)
             for title in self.titles:
@@ -122,7 +150,7 @@ class Sortier(object):
                                 season_episode = re.search(self.regex_season_episode, f_name, re.IGNORECASE)
                                 
                                 season_path = os.path.join(
-                                        self.destination_path, self.season + " " + season_episode.group(2)[1:])
+                                        self.destination_path, title, self.season + " " + season_episode.group(2)[1:])
                                 
                                 make_season_path(season_path)
                                 
@@ -177,6 +205,9 @@ def make_regex_show_title(title: str) -> str:
 
 
 def home_path(path: str) -> str:
+    if path[:1] == os.fspath("/"):
+        path = path[1:]
+    
     return os.path.join(Path.home(), path)
 
 
@@ -232,9 +263,9 @@ def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
     click.clear()
     click.echo(
             "------------------------------------------------------------------------------------------------\n"
-            "Sorter: Sorting ripped or downloaded tv-shows into folders\n"
+            "Sortier: Sorting ripped or downloaded tv-shows into folders\n"
             "Copyright (C) 2021 Michael Grossklos (mail@grossklos.com)\n"
-            "https://github.com/michaelgrossklos/tvshowsorter\n"
+            "https://github.com/michaelgrossklos/sortier\n"
             "------------------------------------------------------------------------------------------------\n"
             "This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to\n"
             "redistribute it under certain conditions;\n"
@@ -273,3 +304,23 @@ def addextensions(ctx, file_extensions):
     Extends the list of file extensions. Type: 'sortier settings' to the the actual list.
     """
     ctx.obj.extend_file_extensions(file_extensions)
+
+
+@cli.command()
+@click.argument('destpath', default = None, type = click.STRING)
+@click.pass_context
+def destpath(ctx, destpath):
+    """
+    Changes the destination path permanently
+    """
+    ctx.obj.change_path_settings(None, destpath)
+
+
+@cli.command()
+@click.argument('oripath', default = None, type = click.STRING)
+@click.pass_context
+def oripath(ctx, oripath):
+    """
+    Changes the origin path permanently
+    """
+    ctx.obj.change_path_settings(oripath, None)
