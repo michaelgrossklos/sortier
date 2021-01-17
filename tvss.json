@@ -3,14 +3,12 @@
     "ORIGIN_PATH": "Downloads/extracted",
     "DESTINATION_PATH": "Downloads/extracted/SORTED"
   },
-  "extensions": {
-    "FILE_EXTENSIONS": [
-      ".mkv",
-      ".avi",
-      ".mp4",
-      ".mov"
-    ]
-  },
+  "FILE_EXTENSIONS": [
+    ".mkv",
+    ".avi",
+    ".mp4",
+    ".mov"
+  ],
   "LANGUAGES": {
     "de": "Staffel",
     "en": "Season",

@@ -25,11 +25,12 @@ setup(
             'Development Status :: 4 - Beta',
             'Intended Audience :: End Users/Desktop',
             'Topic :: Software Development :: Build Tools',
-            'License :: OSI Approved :: MIT License',
+            'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
             'Environment :: Console',
+            'Operating System :: OS Independent',
             ],
         python_requires = '~=3.7',
         )

@@ -39,7 +39,7 @@ class TvShowSorter(object):
         self.regex_season_episode = self.conf['REGEX']
         self.origin_path = home_path(origin_path or self.conf['default_paths']['ORIGIN_PATH'])
         self.destination_path = home_path(destination_path or self.conf['default_paths']['DESTINATION_PATH'])
-        self.extensions = self.conf['extensions']['FILE_EXTENSIONS']
+        self.extensions = self.conf['FILE_EXTENSIONS']
         self.season = self.conf['LANGUAGES'][language]
         self.language = language
         self.LOG = start_logging(debug)
@@ -72,7 +72,7 @@ class TvShowSorter(object):
                 for e in file_extensions:
                     self.extensions.append(e)
                 
-                conf['extensions']['FILE_EXTENSIONS'] = self.extensions
+                conf['FILE_EXTENSIONS'] = self.extensions
                 
                 try:
                     self.LOG.debug("Writing extensions to config file...")
