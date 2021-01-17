@@ -115,7 +115,7 @@ class Sortier(object):
     
     def echo_settings(self):
         click.clear()
-        click.secho("ACTUAL SETTINGS FOR SORTIER:", fg = "black", bold = True, bg = "cyan")
+        click.secho("ACTUAL SETTINGS FOR SORTIER:", fg = "white", bold = True, bg = "cyan")
         click.secho("Regex for seasons: " + self.regex_season_episode, fg = "blue")
         click.secho("Origin/Source path: " + self.origin_path, fg = "blue")
         click.secho("Destination path: " + self.destination_path, fg = "blue")
@@ -123,8 +123,9 @@ class Sortier(object):
         click.secho("Languages available: " + str([key for key in self.conf['LANGUAGES']]), fg = "blue")
         click.secho("Language set: " + self.language, fg = "blue")
         click.secho("Season is called: " + self.season + "\n", fg = "blue")
-        click.secho("More information on:", fg = "black", bg = "cyan", bold = True)
-        click.secho("https://github.com/michaelgrossklos/sortier" + "\n", fg = "cyan", bold = True)
+        click.secho("More information on:", fg = "white", bg = "cyan", bold = True)
+        click.secho("Github: https://github.com/michaelgrossklos/sortier", fg = "cyan", bold = True)
+        click.secho("Discord: https://discord.gg/y5Kx2UGxhQ" + "\n", fg = "cyan", bold = True)
     
     def walk_origin_show_files(self) -> None:
         try:
@@ -265,7 +266,8 @@ def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
             "------------------------------------------------------------------------------------------------\n"
             "Sortier: Sorting ripped or downloaded tv-shows into folders\n"
             "Copyright (C) 2021 Michael Grossklos (mail@grossklos.com)\n"
-            "https://github.com/michaelgrossklos/sortier\n"
+            "Github: https://github.com/michaelgrossklos/sortier\n"
+            "Discord: https://discord.gg/y5Kx2UGxhQ\n"
             "------------------------------------------------------------------------------------------------\n"
             "This program comes with ABSOLUTELY NO WARRANTY; This is free software, and you are welcome to\n"
             "redistribute it under certain conditions;\n"

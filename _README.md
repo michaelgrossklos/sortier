@@ -7,6 +7,20 @@ centers need the correct naming convention in order to find all the metadata lik
 The seasons need to be in a folder called after the season. F.e.: "Season 01". Also, the videos itself need to follow these kind opf conventions.
 Files need to be named like this: "My New Show (2011) s01e01.mkv". This very tool does all that for you.
 
+Discord: https://discord.gg/P7tTU4kV
+
+- [Sortier](#sortier)
+    + [Installation](#installation)
+    + [Using the tool](#using-the-tool)
+    + [Renaming files](#renaming-files)
+        - [File name a.k.a show titles (required)](#file-name-aka-show-titles--required-)
+    + [File extensions](#file-extensions)
+    + [Show all settings](#show-all-settings)
+    + [Setting the paths](#setting-the-paths)
+        - [Origin/Source path](#origin-source-path)
+        - [Destination path](#destination-path)
+        - [Changing the paths](#changing-the-paths)∏
+
 ### Installation
 
 To install Sortier just copy the following line to your Terminal or command line:
