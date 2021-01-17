@@ -31,9 +31,9 @@ folder and this folder is somehow named after the show. For example: `my.tv.show
 between the words of the title itself, and surrounding it are not relevant at all. TVSS will find the title anyways.
 
 How the video file itself is named, does not matter, as long as it holds the season and episode count. For example `my.first.show.s01e20`. In
-which `s01e20` means season 1, episode 20.
+which `s01e20` means season 1, episode 20. Without that, TVSS is incapable of sorting the episodes and will stop running with an error message.
 
-#### File extensions
+### File extensions
 
 Not always, but most of the time, are the provided default file extensions sufficient. If that is not the case you can extend the list of file
 extensions by using the commmand ``tvss addextensions ".mpeg" ".webm"``.
@@ -45,3 +45,20 @@ The extension you're adding, will get saved permanently. So, you don't need to s
 
 If you want to know what extensions are already provided, just use the command `tvss settings` without any arguments, and an overview of all settings
 gets printed on the screen.
+
+### Show all settings
+
+As you are able to change most of the settings, you need to know the actual state they're in. Just type `tvss settings` without any arguments, and
+something like the following will get printed on the screen:
+
+```bazaar
+ACTUAL SETTINGS FOR TVSS:
+Regex for seasons: (s([0-9]{2})e[0-9]{2})
+Origin path: /Users/<user>/Downloads/extracted
+Destination path: /Users/<user>/Downloads/extracted/SORTED
+Extensions: ['.mkv', '.avi', '.mp4', '.mov']
+Language: en
+Season is called: Season
+You can find more information on:
+https://github.com/michaelgrossklos/tvshowsorter
+```

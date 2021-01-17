@@ -91,13 +91,14 @@ class TvShowSorter(object):
         click.clear()
         click.secho("ACTUAL SETTINGS FOR TVSS:", fg = "black", bold = True, bg = "cyan")
         click.secho("Regex for seasons: " + self.regex_season_episode, fg = "blue")
-        click.secho("Origin path: " + self.origin_path, fg = "blue")
+        click.secho("Origin/Source path: " + self.origin_path, fg = "blue")
         click.secho("Destination path: " + self.destination_path, fg = "blue")
-        click.secho("Extensions: " + str(self.extensions), fg = "blue")
-        click.secho("Language: " + self.language, fg = "blue")
-        click.secho("Season is called: " + self.season, fg = "blue")
-        click.secho("You can find more information about on:", fg = "black", bg = "cyan", bold = True)
-        click.secho("https://github.com/michaelgrossklos/tvshowsorter", fg = "cyan", bold = True)
+        click.secho("File extensions available: " + str(self.extensions), fg = "blue")
+        click.secho("Languages available: " + str([key for key in self.conf['LANGUAGES']]), fg = "blue")
+        click.secho("Language set: " + self.language, fg = "blue")
+        click.secho("Season is called: " + self.season + "\n", fg = "blue")
+        click.secho("More information on:", fg = "black", bg = "cyan", bold = True)
+        click.secho("https://github.com/michaelgrossklos/tvshowsorter" + "\n", fg = "cyan", bold = True)
     
     def walk_origin_show_files(self) -> None:
         for f in listdir('.'):
