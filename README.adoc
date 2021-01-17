@@ -301,7 +301,31 @@ The file format is JSON and very easy to understand.
 This is what it looks like initally:
 
 [source,json]
-include::sortier.json[]
+include::/blob/main/sortier.json[]
+
+....
+{
+  "default_paths": {
+    "ORIGIN_PATH": "Downloads/extracted",
+    "DESTINATION_PATH": "Downloads/extracted/SORTED"
+  },
+  "FILE_EXTENSIONS": [
+    ".mkv",
+    ".avi",
+    ".mp4",
+    ".mov"
+  ],
+  "LANGUAGES": {
+    "de": "Staffel",
+    "en": "Season",
+    "es": "Temporada",
+    "fr": "Saison",
+    "it": "Stagione",
+    "ru": "Sezon"
+  },
+  "REGEX": "(s([0-9]{2})e[0-9]{2})"
+}
+....
 
 The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
 Where `<users home directory>` gets substituted with the path to your users home directory.
