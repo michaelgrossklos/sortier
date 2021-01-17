@@ -6,27 +6,30 @@ from setuptools import setup
 
 setup(
         name = "tvss",
-        version = "0.1",
+        version = "1.0",
         url = "https://github.com/michaelgrossklos/tvshowsorter",
         author = "Michael Grossklos",
+        description = "Sorting ripped or downloaded tv-shows into folders named after the seasons they're belonging to",
         author_email = "mail@grossklos.com",
         licence = "MIT",
         py_modules = ["tvss"],
         install_requires = [
             "Click",
+            "Colorama",
             ],
         entry_points = '''
             [console_scripts]
             tvss=tvss:cli
         ''',
         classifiers = [
-            'Development Status :: 3 - Alpha',
-            'Intended Audience :: End User',
+            'Development Status :: 4 - Beta',
+            'Intended Audience :: End Users/Desktop',
             'Topic :: Software Development :: Build Tools',
             'License :: OSI Approved :: MIT License',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8',
             'Programming Language :: Python :: 3.9',
+            'Environment :: Console',
             ],
         python_requires = '~=3.7',
         )

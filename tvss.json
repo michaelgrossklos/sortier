@@ -9,11 +9,6 @@
       ".avi",
       ".mp4",
       ".mov"
-    ],
-    "ARCHIVE_EXTENSIONS": [
-      "zip",
-      "rar",
-      "tar.gz"
     ]
   },
   "LANGUAGES": {
