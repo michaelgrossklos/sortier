@@ -29,6 +29,10 @@ import click
 
 
 class TvShowSorter(object):
+    """
+    TODO: Destination path needs to be in a parent folder named after the show. Not just directly in the seasons folder.
+    TODO: Because, if there are several shows, they would all be sorted into the same season folders.
+    """
     
     def __init__(self, origin_path, destination_path, delete_folders, debug = False, \
                  language =
