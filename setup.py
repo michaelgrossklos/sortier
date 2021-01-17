@@ -5,21 +5,21 @@ from shutil import copy2
 from setuptools import setup
 
 setup(
-        name = "tvss",
+        name = "sortier",
         version = "1.0",
         url = "https://github.com/michaelgrossklos/tvshowsorter",
         author = "Michael Grossklos",
         description = "Sorting ripped or downloaded tv-shows into folders named after the seasons they're belonging to",
         author_email = "mail@grossklos.com",
-        licence = "MIT",
-        py_modules = ["tvss"],
+        licence = "GNU v3",
+        py_modules = ["sortier"],
         install_requires = [
-            "Click",
-            "Colorama",
+            "click",
+            "colorama",
             ],
         entry_points = '''
             [console_scripts]
-            tvss=tvss:cli
+            sortier=sortier:cli
         ''',
         classifiers = [
             'Development Status :: 4 - Beta',
@@ -36,18 +36,18 @@ setup(
         )
 
 """
-Copying the config file into the desired location ($HOME/.conf/tvss/tvss.json)
+Copying the config file into the desired location ($HOME/.conf/tvss/sortier.json)
 If the file already exists it will get overwritten.
 Should work for all platforms.
 """
 conf_path = os.path.join(os.path.expanduser('~'), '.config')
-conf_tvss_path = os.path.join(conf_path, 'tvss')
-conf_file_path = os.path.join(conf_tvss_path, 'tvss.json')
+conf_sortier_path = os.path.join(conf_path, 'sortier')
+conf_file_path = os.path.join(conf_sortier_path, 'sortier.json')
 
 if conf_path:
-    if not os.path.exists(conf_tvss_path):
+    if not os.path.exists(conf_sortier_path):
         try:
-            os.mkdir(conf_tvss_path)
+            os.mkdir(conf_sortier_path)
         except FileNotFoundError as e:
             print(e)
     
@@ -58,6 +58,6 @@ if conf_path:
             sys.exit(e)
     
     try:
-        copy2('tvss.json', os.path.join(conf_path, 'tvss', 'tvss.json'), follow_symlinks = True)
+        copy2('sortier.json', os.path.join(conf_path, 'sortier', 'sortier.json'), follow_symlinks = True)
     except FileExistsError as e:
         sys.exit(e)

@@ -28,7 +28,7 @@ from pathlib import Path
 import click
 
 
-class TvShowSorter(object):
+class Sortier(object):
     """
     TODO: Destination path needs to be in a parent folder named after the show. Not just directly in the seasons folder.
     TODO: Because, if there are several shows, they would all be sorted into the same season folders.
@@ -38,7 +38,7 @@ class TvShowSorter(object):
                  language =
                  'de'):
         self.debug = debug
-        self.config_file_path = os.path.join(Path.home(), '.config', 'tvss', 'tvss.json')
+        self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
         self.origin_path = home_path(origin_path or self.conf['default_paths']['ORIGIN_PATH'])
@@ -89,11 +89,11 @@ class TvShowSorter(object):
                 except Exception as e:
                     self.LOG.debug(e)
             else:
-                message("error", "Extension already available. Type: 'tvss settings' to see all extensions")
+                message("error", "Extension already available. Type: 'sortier settings' to see all extensions")
     
     def echo_settings(self):
         click.clear()
-        click.secho("ACTUAL SETTINGS FOR TVSS:", fg = "black", bold = True, bg = "cyan")
+        click.secho("ACTUAL SETTINGS FOR SORTIER:", fg = "black", bold = True, bg = "cyan")
         click.secho("Regex for seasons: " + self.regex_season_episode, fg = "blue")
         click.secho("Origin/Source path: " + self.origin_path, fg = "blue")
         click.secho("Destination path: " + self.destination_path, fg = "blue")
@@ -232,7 +232,7 @@ def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
     click.clear()
     click.echo(
             "------------------------------------------------------------------------------------------------\n"
-            "TV Show Sorter: Sorting ripped or downloaded tv-shows into folders\n"
+            "Sorter: Sorting ripped or downloaded tv-shows into folders\n"
             "Copyright (C) 2021 Michael Grossklos (mail@grossklos.com)\n"
             "https://github.com/michaelgrossklos/tvshowsorter\n"
             "------------------------------------------------------------------------------------------------\n"
@@ -240,7 +240,7 @@ def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
             "redistribute it under certain conditions;\n"
             "go to: https://www.gnu.org/licenses/gpl-3.0.html for details.\n"
             "------------------------------------------------------------------------------------------------\n")
-    ctx.obj = TvShowSorter(origin_path, destination_path, delete_folders, debug, language)
+    ctx.obj = Sortier(origin_path, destination_path, delete_folders, debug, language)
     ctx.obj.LOG.debug('Starting CLI...')
 
 
@@ -270,6 +270,6 @@ def settings(ctx):
 @click.pass_context
 def addextensions(ctx, file_extensions):
     """
-    Extends the list of file extensions. Type: 'tvss settings' to the the actual list.
+    Extends the list of file extensions. Type: 'sortier settings' to the the actual list.
     """
     ctx.obj.extend_file_extensions(file_extensions)
