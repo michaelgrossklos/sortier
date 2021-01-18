@@ -107,7 +107,6 @@ The order in which you specify the options does not matter.
 
 == Commands
 
-'''
 === Renaming files
 
 The files to be renamed are only the video files that get stored into the destination folder.
@@ -284,7 +283,6 @@ The default is German.
 | es | Spanish | Temporada
 |===
 
-'''
 TIP: Actually, there is no functionality to permanently set the language.
 So you have to use it every time you use Sortier.
 
