@@ -342,14 +342,6 @@ This is what it looks like initally:
 }
 ....
 
-[source,json]
-include::sortier/sortier.json[]
-
-ifdef::env-github[]
-
-    <<https://raw.githubusercontent.com/michaelgrossklos/sortier/main/sortier/sortier.json?token=ABSN5FBXULFMTH76BKPA7WLAAX6IY#sortier.json, Sortier Config File>>
-endif::[]
-
 The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
 Where `<users home directory>` gets substituted with the path to your users home directory.
 The path depends on the operating system you are using.
