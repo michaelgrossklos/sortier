@@ -30,15 +30,15 @@ import click
 
 class Sortier(object):
     
-    def __init__(self, origin_path, destination_path, delete_folders, debug = False, \
+    def __init__(self, delete_folders, debug = False, \
                  language =
                  'de'):
         self.debug = debug
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
-        self.origin_path = home_path(origin_path or self.conf['default_paths']['ORIGIN_PATH'])
-        self.destination_path = home_path(destination_path or self.conf['default_paths']['DESTINATION_PATH'])
+        self.origin_path = home_path(self.conf['default_paths']['ORIGIN_PATH'])
+        self.destination_path = home_path(self.conf['default_paths']['DESTINATION_PATH'])
         self.extensions = self.conf['FILE_EXTENSIONS']
         self.season = self.conf['LANGUAGES'][language]
         self.language = language
@@ -134,7 +134,7 @@ class Sortier(object):
         except FileNotFoundError as e:
             sys.exit(e)
         
-        for f in listdir('.'):
+        for f in listdir('..'):
             self.LOG.debug(self.titles)
             for title in self.titles:
                 if not re.search(make_regex_show_title(title), f, re.IGNORECASE):
@@ -240,7 +240,7 @@ def start_logging(debug) -> logging.Logger:
               help = "Delete the source folder after copying the file"
               )
 @click.pass_context
-def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
+def cli(ctx, delete_folders, debug, language):
     """
     Sorting your ripped or downloaded tv-shows into folders named after the seasons they're belonging to (f.e.: Season
     01).
@@ -259,7 +259,7 @@ def cli(ctx, origin_path, destination_path, delete_folders, debug, language):
             "redistribute it under certain conditions;\n"
             "go to: https://www.gnu.org/licenses/gpl-3.0.html for details.\n"
             "------------------------------------------------------------------------------------------------\n")
-    ctx.obj = Sortier(origin_path, destination_path, delete_folders, debug, language)
+    ctx.obj = Sortier(delete_folders, debug, language)
     ctx.obj.LOG.debug('Starting CLI...')
 
 

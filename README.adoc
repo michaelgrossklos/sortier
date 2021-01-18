@@ -367,20 +367,91 @@ So there are some additional features planed for future versions.
 === Getting titles from The Movie Database
 :hide-uri-scheme:
 The Movie Database (TMDb) https://www.themoviedb.org is a free Service which provides lots of informations about movies and tv-shows.
-Media centers like Plex getting there data (like posters, bakcground images, descriptions, actors a.s.f.) from that website.
+Media centers like Plex getting there data (like posters, background images, descriptions, actors a.s.f.) from that website.
 
 Lukely for us, it also has an API. So we are capable to get this data to.
 But the only thing we really need, is the correct title.
 Since the media server needs the right one according to TMDb, the tool could search for a title, given by the user and find the right one to be used for the folder and file names.
 
-=== Setting language permanetly
+=== Setting language permanently
 
 Probably the next feature to implement will be this one.
 Just to be able to set the language permanently without editing the config file.
 The option will still be at hand.
 But most of the users don't need to change that option that much.
 
-== Contribution
+== Contributing to Sortie
+
+We love your input!
+We want to make contributing to this project as easy and transparent as possible, whether it's:
+
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
+
+=== We Develop with Github
+
+We use github to host code, to track issues and feature requests, as well as accept pull requests.
+
+=== We Use link:https://guides.github.com/introduction/flow/index.html[Github Flow], So All Code Changes Happen Through Pull Requests
+
+Pull requests are the best way to propose changes to the codebase (we use link:https://guides.github.com/introduction/flow/index.html[Github Flow]).
+We actively welcome your pull requests:
+
+1. Fork the repo and create your branch from `master`.
+2. If you've added code that should be tested, add tests.
+3. If you've changed APIs, update the documentation.
+4. Ensure the test suite passes.
+5. Make sure your code lints.
+6. Issue that pull request!
+
+=== Any contributions you make will be under the GNU-GPL-V3 Software License
+
+In short, when you submit code changes, your submissions are understood to be under the same link:https://www.gnu.org/licenses/gpl-3.0.en.html[GNU-GPL-V3] that covers the project.
+Feel free to contact the maintainers if that's a concern.
+
+=== Report bugs using Github's link:https://github.com/michaelgrossklos/sortie/issues[issues]
+
+We use GitHub issues to track public bugs.
+Report a bug by [opening a new issue](); it's that easy!
+
+=== Write bug reports with detail, background, and sample code
+
+link:http://stackoverflow.com/q/12488905/180626[This is an example] of a bug report link:https://gist.github.com/briandk[briandk] wrote, and I think it's not a bad model.
+Here's link:http://www.openradar.me/11905408[another example from Craig Hockenberry], an app developer.
+
+**Great Bug Reports** tend to have:
+
+- A quick summary and/or background
+- Steps to reproduce
+- Be specific!
+- Give sample code if you can.
+- What you expected would happen
+- What actually happens
+- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+
+People *love* thorough bug reports.
+I'm not even kidding.
+
+=== Use a Consistent Coding Style
+
+I'm again borrowing these from link:https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md[Facebook's
+Guidelines]
+
+* We're using the link:https://www.python.org/dev/peps/pep-0008/[PEP8] Style Guide for Python, with the following exceptions:
+** 4 spaces for indentation rather than tabs
+** 120 character line length
+
+=== License
+
+By contributing, you agree that your contributions will be licensed under its GNU-GPL-V3 License.
+
+=== References
+
+This document was adapted from the open-source contribution guidelines for
+link:https://github.com/facebook/draft-js/blob/a9316a723f9e918afde44dea68b5f9f39b7d9b00/CONTRIBUTING.md[Facebook's Draft]
 
 == License
 
@@ -402,6 +473,6 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see
 ....
 
-https://www.gnu.org/licenses/
+https://www.gnu.org/licenses/gpl-3.0.en.html
 
 
