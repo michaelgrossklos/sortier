@@ -5,7 +5,7 @@
 :iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
 :imagesdir: images
 
-= image:logo_sortier.svg[Logo,40] Sortier
+= image:logo_sortier.svg[Logo,30] Sortier
 
 === What it does
 
