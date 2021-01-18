@@ -422,6 +422,60 @@ We actively welcome your pull requests:
 5. Make sure your code lints.
 6. Issue that pull request!
 
+=== First Contribution
+
+To contribute to Sortier:
+
+. Clone the repository to your local machine:
++
+----
+git clone https://github.com/michaelgrossklos/sortier.git
+----
+
+. Check out the ``/master`` branch:
++
+----
+git checkout main
+----
+
+. Create a new working branch for your changes:
++
+----
+git checkout -b branchname
+----
+
+. Ensure the tests are passing.
+
+. Add the updated files to your commit:
++
+----
+git add .
+----
+
+. Commit your changes:
++
+----
+git commit -m "Commit message here"
+----
+
+. Push your changes:
++
+----
+git push
+----
++
+If git prompts you to set an upstream in order to push, use this command:
++
+----
+git push --set-upstream origin <branchname>
+----
+
+. Create a pull request (PR) by navigating to https://github.com/michaelgrossklos/sortier/pulls and clicking on
+[btn]``New Pull Request``.
+Write an informative commit message detailing your changes and save your PR.
+If you haven't yet finished the work you want to do, make sure you create a Draft PR by selecting it from the drop down box in the github web UI.
+This lets the reviewer know that you haven't finished work yet, while still being transparent about what you are working on, and making sure we all understand current progress.
+
 === Any contributions you make will be under the GNU-GPL-V3 Software License
 
 In short, when you submit code changes, your submissions are understood to be under the same link:https://www.gnu.org/licenses/gpl-3.0.en.html[GNU-GPL-V3] that covers the project.
