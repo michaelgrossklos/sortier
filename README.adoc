@@ -3,8 +3,9 @@
 :toclevels: 3
 :icons: font
 :iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
+:imagesdir: images
 
-= Sortier
+= image:logo_sortier.svg[Logo,40] Sortier
 
 === What it does
 
@@ -301,8 +302,6 @@ The file format is JSON and very easy to understand.
 This is what it looks like initally:
 
 [source,json]
-include::https://raw.githubusercontent.com/michaelgrossklos/sortier/main/sortier.json?token=ABSN5FHO4G52TQC6UQJC4KTAATFA6[]
-
 ....
 {
   "default_paths": {
@@ -382,4 +381,27 @@ The option will still be at hand.
 But most of the users don't need to change that option that much.
 
 == Contribution
+
+== License
+
+....
+Sortier: Sorting ripped or downloaded tv-shows into folders
+Copyright (C) 2021  Michael Grossklos (mail@grossklos.com)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see
+....
+
+https://www.gnu.org/licenses/
+
 
