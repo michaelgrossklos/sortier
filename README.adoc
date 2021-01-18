@@ -1,9 +1,18 @@
 :sectanchors:
 :toc:
+:toc-placement!:
 :toclevels: 3
 :icons: font
 :iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
 :imagesdir: images
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 = image:logo_sortier.svg[Logo,30] Sortier
 
@@ -22,6 +31,8 @@ Files need to be named like this:
 `My New Show (2011) s01e01.mkv.`
 
 This very tool does all that for you.
+
+toc::[]
 
 === Installation
 
@@ -259,15 +270,20 @@ You can set the language by eather use the long or the short version of this opt
 
 The default is German.
 
-These are the languages available:
+[width=50%]
+.Languages available in Sortier
+|===
+| Abbreviation | Language | Season
 
-- en => English => Season
-- de => German => Staffel
-- fr => French => Saison
-- it => Italian => Stagione
-- ru => Russian => Sezon
-- es => Spanish => Temporada
+| en | English | Season
+| de | German | Staffel
+| fr | French | Saison
+| it | Italian | Stagione
+| ru | Russian | Sezon
+| es | Spanish | Temporada
+|===
 
+'''
 TIP: Actually, there is no functionality to permanently set the language.
 So you have to use it every time you use Sortier.
 
@@ -325,6 +341,14 @@ This is what it looks like initally:
   "REGEX": "(s([0-9]{2})e[0-9]{2})"
 }
 ....
+
+[source,json]
+include::sortier/sortier.json[]
+
+ifdef::env-github[]
+
+    <<sortier/sortier.json#sortier.json, Sortier Config File>>
+endif::[]
 
 The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
 Where `<users home directory>` gets substituted with the path to your users home directory.
