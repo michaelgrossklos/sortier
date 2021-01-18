@@ -1,19 +1,19 @@
 """
 Sortier: Sorting ripped or downloaded tv-shows into folders
-    Copyright (C) 2021  Michael Grossklos (mail@grossklos.com)
+Copyright (C) 2021  Michael Grossklos (mail@grossklos.com)
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program. If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 import json
@@ -29,10 +29,12 @@ import click
 
 
 class Sortier(object):
+    """
+    The main class with all the functionality.
+    This class gets called at different placed an is also needed to start the program.
+    """
     
-    def __init__(self, delete_folders, debug = False, \
-                 language =
-                 'de'):
+    def __init__(self, delete_folders, debug = False, language = 'de'):
         self.debug = debug
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
@@ -50,12 +52,25 @@ class Sortier(object):
             message("warning", 'DELETING source folders is ON!')
     
     def read_config_file(self) -> dict:
+        """
+        Opens and reads in the config file and sets it to an variable.
+        :return conf: dict
+        """
         with open(self.config_file_path, "r") as f:
             conf = json.load(f)
         
         return conf
     
-    def change_path_settings(self, origin_path = None, destination_path = None):
+    def change_path_settings(self, origin_path = None, destination_path = None) -> None:
+        """
+        Changes either the destination or the origin path in config file
+        Gets called by two commands: destpth & oripath
+        :param origin_path: Path to original video files
+        :type: str
+        :param destination_path: Path to where to save the sorted video files
+        :type: str
+        :return: None
+        """
         if origin_path:
             path = home_path(origin_path)
         else:
@@ -87,7 +102,13 @@ class Sortier(object):
         
         message("info", "Path: " + path + " changed successfully")
     
-    def extend_file_extensions(self, file_extensions):
+    def extend_file_extensions(self, file_extensions: dict) -> None:
+        """
+        Extends the list of file extentions in the config file.
+        :param file_extensions: The extensions including "." (dot)
+        :type: dict
+        :return: None
+        """
         self.LOG.debug("Trying to add file extensions: " + str(file_extensions))
         
         for x in file_extensions:
@@ -113,7 +134,12 @@ class Sortier(object):
             else:
                 message("error", "Extensions already available. Type: 'sortier settings' to see all extensions")
     
-    def echo_settings(self):
+    def echo_settings(self) -> None:
+        """
+        Prints the actual settings (from sortier.json) to the commandline.
+        Gets called by the command: settings
+        :return: None
+        """
         click.clear()
         click.secho("ACTUAL SETTINGS FOR SORTIER:", fg = "white", bold = True, bg = "cyan")
         click.secho("Regex for seasons: " + self.regex_season_episode, fg = "blue")
@@ -128,6 +154,11 @@ class Sortier(object):
         click.secho("Discord: https://discord.gg/y5Kx2UGxhQ" + "\n", fg = "cyan", bold = True)
     
     def walk_origin_show_files(self) -> None:
+        """
+        The actual worker.
+        Sorts, renames and copies the video files and makes the needed paths
+        :return: None
+        """
         try:
             os.chdir(home_path(self.conf['default_paths']['ORIGIN_PATH']))
             self.LOG.debug('Current working path: ' + os.getcwd())
@@ -166,7 +197,15 @@ class Sortier(object):
                                     shutil.rmtree(os.path.join(self.origin_path, dir_path))
 
 
-def message(msg_type, msg):
+def message(msg_type: str, msg: str) -> None:
+    """
+    Helper function to provide a prettyfied colored message depending on type.
+    :param msg_type: The type of message; either info, error or warning
+    :type: str
+    :param msg: The actual message
+    :type: str
+    :return: None
+    """
     TYPE = {
         "error":   "[ERROR]",
         "warning": "[WARNING]",
@@ -181,7 +220,13 @@ def message(msg_type, msg):
     click.secho(TYPE[msg_type] + " " + msg, fg = COLOR[msg_type], bold = True)
 
 
-def set_titles(self, tv_show_titles) -> None:
+def set_titles(self, tv_show_titles: dict) -> None:
+    """
+    Sets the titles provided by the user to the corresponding variable.
+    Gets called by command: titles
+    :param tv_show_titles: The titles provided by user input
+    :return: None
+    """
     if not tv_show_titles:
         sys.exit('You need to provide at least one title...')
     
@@ -189,7 +234,13 @@ def set_titles(self, tv_show_titles) -> None:
     self.LOG.debug(self.titles)
 
 
-def make_season_path(path: str):
+def make_season_path(path: str) -> None:
+    """
+    Makes the path for a season depending to a show.
+    :param path: The complete path for the folder
+    :type: str
+    :return: None
+    """
     if not os.path.exists(path):
         try:
             Path(path).mkdir(parents = True, exist_ok = True)
@@ -198,6 +249,13 @@ def make_season_path(path: str):
 
 
 def make_regex_show_title(title: str) -> str:
+    """
+    Makes a regex expression out of the user given title.
+    Is needed to find the titles in the folder names.
+    :param title: The title of an tv-show
+    :return: The regular expression of the given title.
+    :rtype: str
+    """
     s_title = title.lower().split()
     divider = "(?:.*)?"
     title = r"" + divider + divider.join(s_title) + divider
@@ -206,13 +264,29 @@ def make_regex_show_title(title: str) -> str:
 
 
 def home_path(path: str) -> str:
+    """
+    The home path is the path to the current users folder. It can vary depending on OS.
+    This function gets the correct path and concatenates the given path to it.
+    It gets rid of eventual pefixed slashes
+    :param path: The path under the current users home folder.
+    :type_ str
+    :return: The complete path including the home folder.
+    :rtype: str
+    """
     if path[:1] == os.fspath("/"):
         path = path[1:]
     
     return os.path.join(Path.home(), path)
 
 
-def start_logging(debug) -> logging.Logger:
+def start_logging(debug: str) -> logging.Logger:
+    """
+    Starts the logging depending on the logging level
+    :param debug: The logging level (info, debug, error, fatal)
+    :type: str
+    :return: The logger itself
+    :rtype: Logger
+    """
     logging.basicConfig(level = logging.WARNING, format = "%(msg)s")
     
     if debug:
@@ -243,9 +317,8 @@ def start_logging(debug) -> logging.Logger:
 def cli(ctx, delete_folders, debug, language):
     """
     Sorting your ripped or downloaded tv-shows into folders named after the seasons they're belonging to (f.e.: Season
-    01).
-    Renames all files like "Name Of Show s01e01.ext" for direct use in your
-    media center like Plex or Emby. So it can find all meta data needed.
+    01). Renames all files like "Name Of Show s01e01.ext" for direct use in your media center like Plex or Emby. So
+    it can find all meta data needed.
     """
     click.clear()
     click.echo(
