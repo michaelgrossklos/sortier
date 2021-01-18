@@ -347,7 +347,7 @@ include::sortier/sortier.json[]
 
 ifdef::env-github[]
 
-    <<sortier/sortier.json#sortier.json, Sortier Config File>>
+    <<https://raw.githubusercontent.com/michaelgrossklos/sortier/main/sortier/sortier.json?token=ABSN5FBXULFMTH76BKPA7WLAAX6IY#sortier.json, Sortier Config File>>
 endif::[]
 
 The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
