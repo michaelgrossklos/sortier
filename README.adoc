@@ -271,6 +271,7 @@ You can set the language by eather use the long or the short version of this opt
 The default is German.
 
 [width=50%]
+[columns="^1,^1,^1"]
 .Languages available in Sortier
 |===
 | Abbreviation | Language | Season
