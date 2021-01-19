@@ -5,6 +5,8 @@
 :icons: font
 :iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
 :imagesdir: images
+:url-users-home:https://en.wikipedia.org/wiki/Home_directory
+
 
 ifdef::env-github[]
 :tip-caption: :bulb:
@@ -157,20 +159,42 @@ The files to be renamed are only the video files that get stored into the destin
 
 In order to rename - and more importantly - find the right files, you need to provide the titles of the show.
 
-You do that by typing `sortier titles "My tv show 1" "My tv show 2"`.
-Capitalization will be ignored.
+You do that by typing
+
+----
+sortier titles "My tv show 1" "My tv show 2"
+----
+
+Capitalization will be ignored for finding the video files.
+But, it is important for the file and folder naming.
+The way you specify the titles here, the files and folder will get named.
+
 Notice, that you are able to specify just one, or an unlimited amount of titles.
 You just need to wrap each title into quotation marks followed by a space.
 The order in which you define the titles is irrelevant.
 
-This also means, that you can have multiple tv shows including multiple seasons in your source folder.
-As long as each episode is contained in its own folder and this folder is somehow named after the show.
-For example: `my.tv.show.1` or `345-my.tv.show_2` or `dim-mytvshow.3-IFRIM`.
+This also means, that you can have multiple tv-shows including multiple seasons in your source folder.
+As long as each episode is contained in its own folder and this folder is somehow named after the show. +
+
+For example:
+
+----
+/The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA/
+/345-my.tv.show_2/
+/dim-mytvshow.3-IFRIM/
+----
+
 The characters in between the words of the title itself, and surrounding it are not relevant at all.
 Sortier will find the title anyways.
 
-How the video file itself is named, does not matter, as long as it holds the season and episode count.
-For example `my.first.show.s01e20`.
+How the video file itself is named, does not matter, as long as it holds the season and episode count. +
+
+For example
+
+----
+The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
+----
+
 In which `s01e20` means season 1, episode 20. Without that, Sortier is incapable of sorting the episodes and will stop running with printing out an error message.
 
 '''
@@ -179,7 +203,10 @@ In which `s01e20` means season 1, episode 20. Without that, Sortier is incapable
 
 Not always, but most of the time, are the provided default file extensions sufficient.
 If that is not the case you can extend the list of file extensions by using the commmand
-`sortier addextensions ".mpeg" ".webm"`.
+
+----
+sortier addextensions ".mpeg" ".webm"
+----
 
 Like the command title, you can specify just one or an unlimited amount of extensions.
 You just need to wrap each extension into quotation marks followed by a space.
@@ -187,8 +214,6 @@ The order in which you define those, is irrelevant.
 
 The extension you’re adding, will get saved permanently.
 So, you don’t need to set them the next time you use Sortier.
-
-If you want to know what extensions are already provided, just use the command `sortier settings` without any arguments, and an overview of all settings gets printed on the screen.
 
 '''
 
@@ -200,16 +225,21 @@ The origin path and the destination path.
 ==== Origin/Source path
 
 This is the path where the ripped or downloaded files are to find at.
-In the settings you’ll see the whole path.
+In the settings you’ll see the whole path. +
+
 Which by default is set to
-`Downloads/extracted`.
 
-That is the relative path (from the home directory) to your source folder, where all the files are in.
-You can set this path to any location under your home directory, as long as one won’t need administrator rights to read from it.
+----
+Downloads/extracted
+----
+
+That is the relative path (from the {url-users-home}[users home directory]) to your source folder, where all the files are in.
+You can set this path to any location under your users home directory, as long as one won’t need link:https://www.computerhope.com/jargon/a/administrator-rights.htm[administrator rights]
+to read from it.
 Most of the time, it will be your downloads folder or any subfolders beneath it.
-You just need to provide the parent folder, where all other folders, that containing the video files are contained in.
+You just need to provide the parent folder that contains the folders of the video files.
 
-In the example above, your folder structure would look something like this (assuming you’re on Mac OSX):
+Your folder structure could look something like this (assuming you’re on Mac OSX):
 
 ....
 └── Users/
@@ -236,7 +266,11 @@ In which `extracted` is the parent folder of all the video files.
 All the video files will be copied to this path.
 
 This path by default is set to
-`<your home directory>/Downloads/extracted/SORTED`.
+
+----
+<your home directory>/Downloads/extracted/SORTED
+----
+
 It’s the same principal as of the origin path.
 
 As mentioned above, the files will be sorted into folders named after the show and subfolders named after the seasons.
@@ -307,7 +341,7 @@ If you set the language, it really is not much what changes.
 The only thing that changes is how the folder for the seasons gets named.
 In english it will be `Season`.
 In German `Staffel` and in french `Saison` and so on.
-You can set the language by eather use the long or the short version of this option.
+You can set the language by either use the long or the short version of this option.
 
 `--language en` or `-l en`
 
@@ -333,21 +367,37 @@ So you have to use it every time you use Sortier.
 == Flags
 
 Flags are a kind of options.
-The difference is, that these don't receive any arguments like options do.
-You just use the flag like so `--flag`
+Unlike options, they don't reseive any arguments.
+You just use the flag like so
+
+----
+--flag
+----
 
 === Delete folders
 
-If you use the flag `--delete-folders` without any arguments, all source folders will get deleted.
+If you use the flag
+
+----
+--delete-folders
+----
+
+all source folders will get deleted after the video file was copied.
 
 [WARNING]
 Use this functionality with caution.
 
 === Debug mode
 
-Sometimes one needs to debug.
-Users usually do not need this mode.
-You can use `--debug` every time you want the debug mode to be switched on.
+*Users usually do not need this mode.* +
+
+You can use
+
+----
+--debug
+----
+
+every time you want the debug mode to be switched on.
 
 What it does is very simple.
 During the execution of Sortier, you will see some messages on the command line.
@@ -355,8 +405,8 @@ These are giving some hints what the program actually does.
 
 == Configuration file
 
-During the installation Sortier saves a small configuration file.
-The file format is JSON and very easy to understand.
+During the installation, Sortier saves a small configuration file.
+The file format is JSON.
 
 This is what it looks like initally:
 
@@ -385,7 +435,12 @@ This is what it looks like initally:
 }
 ....
 
-The default installallation path is: `<users home directory>/.config/sortier/sortier.json`.
+The default installation path is:
+
+----
+<users home directory>/.config/sortier/sortier.json
+----
+
 Where `<users home directory>` gets substituted with the path to your users home directory.
 The path depends on the operating system you are using.
 On Windows for example, the path could look like this
