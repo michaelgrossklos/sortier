@@ -20,10 +20,10 @@ endif::[]
 
 === What it does
 
-Sortier is capable to sort any kind of tv-shows that one have ripped or downloaded.
+Sortier is capable to sort any kind of tv-shows that one has ripped or downloaded.
 During the process, all video files will be renamed, sorted into folders named after the season they’re belonging to and saved wherever you desire.
 By that, it is possible to upload the files to your media server like Plex, Emby or others.
-These media centers need the correct naming convention in order to find all the metadata like posters, background images and other information.
+These media centers need the correct naming convention in order to find all the metadata like posters, background images and other informations.
 
 The seasons need to be in a folder called after the season.
 For example: +
@@ -40,6 +40,8 @@ My New Show (2011) s01e01.mkv.
 ----
 
 This very tool does all that for you.
+
+'''
 
 toc::[]
 
@@ -155,16 +157,20 @@ https://github.com/michaelgrossklos/sortier
 
 The files to be renamed are only the video files that get stored into the destination folder.
 
-==== File name a.k.a tv-show titles (required)
+==== File name a.k.a tv-show titles (runs Sortier)
 
 In order to rename - and more importantly - find the right files, you need to provide the titles of the show.
+This command also starts the whole process.
+Any other command won't.
 
-You do that by typing
+You use it by typing:
 
 ----
 sortier titles "My tv show 1" "My tv show 2"
 ----
 
+Don't use any placeholders for spaces.
+Write the title like you want the files get named.
 Capitalization will be ignored for finding the video files.
 But, it is important for the file and folder naming.
 The way you specify the titles here, the files and folder will get named.
@@ -195,7 +201,8 @@ For example
 The.Show.S02E01.COMPLETE.English.DL.720p.BluRay.x264-UTOPiA.mkv
 ----
 
-In which `s01e20` means season 1, episode 20. Without that, Sortier is incapable of sorting the episodes and will stop running with printing out an error message.
+In which `S02E01` means season 2, episode 1. Without that, Sortier is incapable of sorting the episodes and will stop running with printing out an error message.
+Capitalization will be ignored.
 
 '''
 
@@ -209,7 +216,7 @@ sortier addextensions ".mpeg" ".webm"
 ----
 
 Like the command title, you can specify just one or an unlimited amount of extensions.
-You just need to wrap each extension into quotation marks followed by a space.
+You just need to put a dot in front of the extension itself and wrap each extension into quotation marks followed by a space.
 The order in which you define those, is irrelevant.
 
 The extension you’re adding, will get saved permanently.
@@ -339,7 +346,7 @@ Please note, that you mustn't use a prefixing slash nor quotation marks.
 
 If you set the language, it really is not much what changes.
 The only thing that changes is how the folder for the seasons gets named.
-In english it will be `Season`.
+In English, it will be `Season`.
 In German `Staffel` and in french `Saison` and so on.
 You can set the language by either use the long or the short version of this option.
 
@@ -486,7 +493,7 @@ So there are some additional features planed for future versions.
 The Movie Database (TMDb) https://www.themoviedb.org is a free Service which provides lots of informations about movies and tv-shows.
 Media centers like Plex getting there data (like posters, background images, descriptions, actors a.s.f.) from that website.
 
-Lukely for us, it also has an API. So we are capable to get this data to.
+Lukely for us, it also has an API. So we are capable to get this data too.
 But the only thing we really need, is the correct title.
 Since the media server needs the right one according to TMDb, the tool could search for a title, given by the user and find the right one to be used for the folder and file names.
 
@@ -647,7 +654,8 @@ along with this program. If not, see
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
 == About the name
-Sometimes one asks: why this name.
+
+Sometimes one asks: why this name? +
 In this case it is very simple and unspectacular. +
 "Sortieren" in German means "to sort".
 So Sortier is so to speak, the noun for that.
