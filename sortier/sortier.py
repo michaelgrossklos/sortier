@@ -40,9 +40,9 @@ class Sortier(object):
     
     '''
     
-    def __init__(self, delete_folders, contains_specials = False, debug = False, language = 'de'):
+    def __init__(self, delete_folders, date, debug = False, language = 'de'):
         self.debug = debug
-        self.specials = contains_specials
+        self.date = date
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
@@ -57,6 +57,21 @@ class Sortier(object):
         
         if self.delete_folders:
             message("warning", 'DELETING source folders is ON!')
+    
+    def make_show_title(self, name: str, season: str) -> str:
+        """
+        Makes the full title of the tv-show
+        :param name: The name of the show
+        :type: str
+        :param season: The season and episode of the tv-show
+        :type: str
+        :return: The whole title of the tv-show
+        :rtype: str
+        """
+        if self.date:
+            return f"{name} - {season} - {self.date}"
+        else:
+            return f"{name} - {season}"
     
     def read_config_file(self) -> dict:
         """
@@ -160,6 +175,19 @@ class Sortier(object):
         click.secho("Github: https://github.com/michaelgrossklos/sortier", fg = "cyan", bold = True)
         click.secho("Discord: https://discord.gg/y5Kx2UGxhQ" + "\n", fg = "cyan", bold = True)
     
+    def set_titles(self, tv_show_titles: dict) -> None:
+        """
+        Sets the titles provided by the user to the corresponding variable.
+        Gets called by command: titles
+        :param tv_show_titles: The titles provided by user input
+        :return: None
+        """
+        if not tv_show_titles:
+            sys.exit('You need to provide at least one title...')
+        
+        self.titles = tv_show_titles
+        self.LOG.debug(self.titles)
+    
     def walk_origin_show_files(self) -> None:
         """
         The actual worker.
@@ -172,8 +200,8 @@ class Sortier(object):
         except FileNotFoundError as e:
             sys.exit(e)
         
-        for f in listdir('..'):
-            self.LOG.debug(self.titles)
+        for f in listdir('.'):
+            self.LOG.debug(f)
             for title in self.titles:
                 if not re.search(make_regex_show_title(title), f, re.IGNORECASE):
                     continue
@@ -194,7 +222,8 @@ class Sortier(object):
                                 make_season_path(season_path)
                                 
                                 from_file = os.path.join(self.origin_path, dir_path, f_name + f_ext)
-                                to_file = os.path.join(season_path, title + " " + season_episode.group(1) + f_ext)
+                                to_file = os.path.join(season_path, self.make_show_title(title, season_episode.group(
+                                        1)) + f_ext)
                                 
                                 if not os.path.isfile(to_file):
                                     shutil.copy2(from_file, to_file)
@@ -225,20 +254,6 @@ def message(msg_type: str, msg: str) -> None:
         }
     
     click.secho(TYPE[msg_type] + " " + msg, fg = COLOR[msg_type], bold = True)
-
-
-def set_titles(self, tv_show_titles: dict) -> None:
-    """
-    Sets the titles provided by the user to the corresponding variable.
-    Gets called by command: titles
-    :param tv_show_titles: The titles provided by user input
-    :return: None
-    """
-    if not tv_show_titles:
-        sys.exit('You need to provide at least one title...')
-    
-    self.titles = tv_show_titles
-    self.LOG.debug(self.titles)
 
 
 def make_season_path(path: str) -> None:
@@ -321,13 +336,13 @@ def start_logging(debug: str) -> logging.Logger:
               help = "Delete the source folder after copying the file"
               )
 @click.option(
-        "--contains-specials/--no-contains-specials",
-        default = False,
-        type = click.BOOL,
-        help = "If the downlaoded files are containing specials"
+        "--date",
+        default = None,
+        type = click.STRING,
+        help = "For date based tv-shows"
         )
 @click.pass_context
-def cli(ctx, delete_folders, contains_specials, debug, language):
+def cli(ctx, delete_folders, date, debug, language):
     """
     Sorting your ripped or downloaded tv-shows into folders named after the seasons they're belonging to (f.e.: Season
     01). Renames all files like "Name Of Show s01e01.ext" for direct use in your media center like Plex or Emby. So
@@ -345,7 +360,7 @@ def cli(ctx, delete_folders, contains_specials, debug, language):
             "redistribute it under certain conditions;\n"
             "go to: https://www.gnu.org/licenses/gpl-3.0.html for details.\n"
             "------------------------------------------------------------------------------------------------\n")
-    ctx.obj = Sortier(delete_folders, contains_specials, debug, language)
+    ctx.obj = Sortier(delete_folders, date, debug, language)
     ctx.obj.LOG.debug('Starting CLI...')
 
 
