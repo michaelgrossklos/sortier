@@ -18,27 +18,42 @@ endif::[]
 
 === What it does
 
-This tool is capable to sort any kind of tv shows.
+Sortier is capable to sort any kind of tv-shows that one have ripped or downloaded.
 During the process, all video files will be renamed, sorted into folders named after the season they’re belonging to and saved wherever you desire.
-By that it is possible to upload the files to your media server like Plex or Emby.
+By that, it is possible to upload the files to your media server like Plex, Emby or others.
 These media centers need the correct naming convention in order to find all the metadata like posters, background images and other information.
 
-The seasons need to be in a folder called after the season. F.e.: `Season 01`
+The seasons need to be in a folder called after the season.
+For example: +
+
+----
+Season 01
+----
 
 Also, the videos itself need to follow these kind of conventions.
 Files need to be named like this:
 
-`My New Show (2011) s01e01.mkv.`
+----
+My New Show (2011) s01e01.mkv.
+----
 
 This very tool does all that for you.
 
 toc::[]
 
+=== Tested Operation Systems
+
+Sortier is actual only tested with Mac OSX Catalina.
+But should be running on any OS. +
+**Tester wanted!**
+
 === Installation
 
 To install Sortier just copy the following line to your Terminal or command line:
 
-`pip3 install git+https://github.com/michaelgrossklos/sortier.git`
+----
+pip3 install git+https://github.com/michaelgrossklos/sortier.git
+----
 
 I assume you have Python >= 3.7 already installed on your machine.
 If not, go to https://www.python.org/ and follow the instructions there.
@@ -48,8 +63,8 @@ If not, go to https://www.python.org/ and follow the instructions there.
 ==== Help
 
 First of all, it is important to know, that you always can use the
-`--help` option.
-This will print someting like this:
+``--help`` option. +
+This will print something like this:
 
 ....
 Usage: sortier [OPTIONS] COMMAND [ARGS]...
@@ -86,9 +101,10 @@ All options are, well… optional ;)
 
 Some of them requiring arguments to be passed in, some do not.
 `--delete-folders` for example is one that does not need any arguments.
+Therefor it is called a flag.
 Whereas `--origin-path` in fact needs the path where all the video files are located.
 
-On the other hand, there are commands.
+On the other hand there are commands.
 Those need to be typed after the options (if you’ve specified one).
 Some of them are requiring arguments.
 Some do not.
@@ -106,6 +122,32 @@ IMPORTANT: Important to know is, that you can’t use two commands at the same t
 The order in which you specify the options does not matter.
 
 == Commands
+
+=== Show all settings
+
+As you are able to change most of the settings, you need to know the actual state they’re in.
+Just type
+
+----
+sortier settings
+----
+
+without any arguments, and something like the following will get printed on the screen:
+
+[source,bazaar]
+----
+ACTUAL SETTINGS FOR SORTIER:
+Regex for seasons: (s([0-9]{2})e[0-9]{2})
+Origin/Source path: Downloads/extracted
+Destination path: Downloads/extracted/SORTED
+File extensions available: ['.mkv', '.avi', '.mp4', '.mov']
+Languages available: ['de', 'en', 'es', 'fr', 'it', 'ru']
+Language set: en
+Season is called: Season
+
+You can find more information on:
+https://github.com/michaelgrossklos/sortier
+----
 
 === Renaming files
 
@@ -149,26 +191,6 @@ So, you don’t need to set them the next time you use Sortier.
 If you want to know what extensions are already provided, just use the command `sortier settings` without any arguments, and an overview of all settings gets printed on the screen.
 
 '''
-
-=== Show all settings
-
-As you are able to change most of the settings, you need to know the actual state they’re in.
-Just type `sortier settings` without any arguments, and something like the following will get printed on the screen:
-
-[source,bazaar]
-----
-ACTUAL SETTINGS FOR SORTIER:
-Regex for seasons: (s([0-9]{2})e[0-9]{2})
-Origin/Source path: Downloads/extracted
-Destination path: Downloads/extracted/SORTED
-File extensions available: ['.mkv', '.avi', '.mp4', '.mov']
-Languages available: ['de', 'en', 'es', 'fr', 'it', 'ru']
-Language set: en
-Season is called: Season
-
-You can find more information on:
-https://github.com/michaelgrossklos/sortier
-----
 
 === Setting the paths
 
@@ -254,6 +276,28 @@ This could look something like this:
                             ├── Another s02e02.mkv
                             └── ...
 ....
+
+==== Changing the paths
+
+To change the paths, you have two commands.
+
+----
+sortier oripath <path>
+----
+
+----
+sortier destpath <path>
+----
+
+It's obvious which one changes which path.
+
+===== Example
+
+----
+sortier oripath Movies/Dowloads/Extracted
+----
+
+Please note, that you mustn't use a prefixing slash nor quotation marks.
 
 == Options
 
