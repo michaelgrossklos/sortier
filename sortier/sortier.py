@@ -40,8 +40,9 @@ class Sortier(object):
     
     '''
     
-    def __init__(self, delete_folders, debug = False, language = 'de'):
+    def __init__(self, delete_folders, contains_specials = False, debug = False, language = 'de'):
         self.debug = debug
+        self.specials = contains_specials
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
@@ -319,8 +320,14 @@ def start_logging(debug: str) -> logging.Logger:
               type = click.BOOL,
               help = "Delete the source folder after copying the file"
               )
+@click.option(
+        "--contains-specials/--no-contains-specials",
+        default = False,
+        type = click.BOOL,
+        help = "If the downlaoded files are containing specials"
+        )
 @click.pass_context
-def cli(ctx, delete_folders, debug, language):
+def cli(ctx, delete_folders, contains_specials, debug, language):
     """
     Sorting your ripped or downloaded tv-shows into folders named after the seasons they're belonging to (f.e.: Season
     01). Renames all files like "Name Of Show s01e01.ext" for direct use in your media center like Plex or Emby. So
@@ -338,7 +345,7 @@ def cli(ctx, delete_folders, debug, language):
             "redistribute it under certain conditions;\n"
             "go to: https://www.gnu.org/licenses/gpl-3.0.html for details.\n"
             "------------------------------------------------------------------------------------------------\n")
-    ctx.obj = Sortier(delete_folders, debug, language)
+    ctx.obj = Sortier(delete_folders, contains_specials, debug, language)
     ctx.obj.LOG.debug('Starting CLI...')
 
 

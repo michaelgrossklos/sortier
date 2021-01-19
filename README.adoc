@@ -119,10 +119,15 @@ If you set one, you would get an error.
 
 A complete line for using Sortier could look something like this:
 
-`sortier -l=en --delete-folders titles "my first show" "my second show"`
-or
+----
+sortier -l=en --delete-folders titles "my first show" "my second show"
+----
 
-`sortier titles "my fisrt show" "my second show"` if you wouldn’t use any options.
+----
+sortier titles "my fisrt show" "my second show"
+----
+
+if you wouldn’t use any options.
 
 IMPORTANT: Important to know is, that you can’t use two commands at the same time, whereas you are able to use more than one option at ones.
 The order in which you specify the options does not matter.
