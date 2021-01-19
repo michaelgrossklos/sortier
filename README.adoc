@@ -47,6 +47,8 @@ This very tool does all that for you.
 
 toc::[]
 
+'''
+
 === Tested Operation Systems
 
 Sortier is actual only tested with Mac OSX Catalina.
@@ -497,7 +499,7 @@ So there are some additional features planed for future versions.
 
 === Getting titles from TheTVDB
 :hide-uri-scheme:
-The Movie Database (link:https://thetvdb.com[TheTVDB]) is a free Service which provides lots of informations about tv-shows.
+The TV Database (link:https://thetvdb.com[TheTVDB]) is a free Service which provides lots of informations about tv-shows.
 Media centers like Plex getting there data (like posters, background images, descriptions, actors a.s.f.) from that website.
 
 Luckily for us, it also has an API. So we are capable to get this data too.
