@@ -34,6 +34,12 @@ class Sortier(object):
     This class gets called at different placed an is also needed to start the program.
     """
     
+    '''
+    TODO: According to the Plex naming convetions, we need to implement more options
+    https://support.plex.tv/articles/naming-and-organizing-your-tv-show-files/
+    
+    '''
+    
     def __init__(self, delete_folders, debug = False, language = 'de'):
         self.debug = debug
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
@@ -182,7 +188,7 @@ class Sortier(object):
                                 season_episode = re.search(self.regex_season_episode, f_name, re.IGNORECASE)
                                 
                                 season_path = os.path.join(
-                                        self.destination_path, title, self.season + " " + season_episode.group(2)[1:])
+                                        self.destination_path, title, self.season + " " + season_episode.group(2))
                                 
                                 make_season_path(season_path)
                                 

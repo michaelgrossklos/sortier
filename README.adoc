@@ -22,8 +22,10 @@ endif::[]
 
 Sortier is capable to sort any kind of tv-shows that one has ripped or downloaded.
 During the process, all video files will be renamed, sorted into folders named after the season they’re belonging to and saved wherever you desire.
-By that, it is possible to upload the files to your media server like Plex, Emby or others.
-These media centers need the correct naming convention in order to find all the metadata like posters, background images and other informations.
+By that, it is possible to upload the files to your media server like link:https://www.plex.tv[Plex],
+link:https://emby.media[Emby] or others.
+These media centers need the link:https://support.plex.tv/articles/naming-and-organizing-your-tv-show-files[correct
+naming convention] in order to find all the metadata like posters, background images and other informations.
 
 The seasons need to be in a folder called after the season.
 For example: +
@@ -488,14 +490,14 @@ Because Sortier won't work anymore.
 Well, after the launch is before the launch, isn't it?
 So there are some additional features planed for future versions.
 
-=== Getting titles from The Movie Database
+=== Getting titles from TheTVDB
 :hide-uri-scheme:
-The Movie Database (TMDb) https://www.themoviedb.org is a free Service which provides lots of informations about movies and tv-shows.
+The Movie Database (TheTVDB) https://thetvdb.com/ is a free Service which provides lots of informations about tv-shows.
 Media centers like Plex getting there data (like posters, background images, descriptions, actors a.s.f.) from that website.
 
-Lukely for us, it also has an API. So we are capable to get this data too.
+Luckily for us, it also has an API. So we are capable to get this data too.
 But the only thing we really need, is the correct title.
-Since the media server needs the right one according to TMDb, the tool could search for a title, given by the user and find the right one to be used for the folder and file names.
+Since the media server needs the right one according to TheTVDB, the tool could search for a title, given by the user and find the right one to be used for the folder and file names.
 
 === Setting language permanently
 
