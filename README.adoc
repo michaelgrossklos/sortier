@@ -5,7 +5,7 @@
 :icons: font
 :iconfont-cdn: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/fontawesome.min.css
 :imagesdir: images
-:url-users-home:https://en.wikipedia.org/wiki/Home_directory
+:url-users-home: https://en.wikipedia.org/wiki/Home_directory[users home directory]
 
 
 ifdef::env-github[]
@@ -233,7 +233,7 @@ Which by default is set to
 Downloads/extracted
 ----
 
-That is the relative path (from the {url-users-home}[users home directory]) to your source folder, where all the files are in.
+That is the relative path (from the {url-users-home}) to your source folder, where all the files are in.
 You can set this path to any location under your users home directory, as long as one won’t need link:https://www.computerhope.com/jargon/a/administrator-rights.htm[administrator rights]
 to read from it.
 Most of the time, it will be your downloads folder or any subfolders beneath it.
@@ -441,10 +441,13 @@ The default installation path is:
 <users home directory>/.config/sortier/sortier.json
 ----
 
-Where `<users home directory>` gets substituted with the path to your users home directory.
+Where `<users home directory>` gets substituted with the path to your {url-users-home}.
 The path depends on the operating system you are using.
 On Windows for example, the path could look like this
-`C:\Users\<current user name>\.confing\sortier\sortier.json>`.
+
+----
+C:\Users\<current user name>\.confing\sortier\sortier.json>
+----
 
 === Changing the config
 
@@ -643,4 +646,13 @@ along with this program. If not, see
 
 https://www.gnu.org/licenses/gpl-3.0.en.html
 
+== About the name
+Sometimes one asks: why this name.
+In this case it is very simple and unspectacular. +
+"Sortieren" in German means "to sort".
+So Sortier is so to speak, the noun for that.
+Even thou, a noun for that verb does not exist in German.
 
+One could see it a little different from that.
+Because "Tier" (SorTIER) in German means "animal".
+Which could be seen as "sorting animal", with a bit of phantasy.
