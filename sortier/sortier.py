@@ -46,8 +46,8 @@ class Sortier(object):
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
-        self.origin_path = home_path(self.conf['default_paths']['ORIGIN_PATH'])
-        self.destination_path = home_path(self.conf['default_paths']['DESTINATION_PATH'])
+        self.origin_path = self.conf['default_paths']['ORIGIN_PATH']
+        self.destination_path = self.conf['default_paths']['DESTINATION_PATH']
         self.extensions = self.conf['FILE_EXTENSIONS']
         self.season = self.conf['LANGUAGES'][language]
         self.language = language
@@ -94,9 +94,9 @@ class Sortier(object):
         :return: None
         """
         if origin_path:
-            path = home_path(origin_path)
+            path = origin_path
         else:
-            path = home_path(destination_path)
+            path = destination_path
         
         self.LOG.debug("Trying to change path: " + path)
         
@@ -351,7 +351,7 @@ def cli(ctx, delete_folders, date, debug, language):
     click.clear()
     click.echo(
             "------------------------------------------------------------------------------------------------\n"
-            "Sortier: Sorting ripped or downloaded tv-shows into folders\n"
+            "Sortier: Sorts ripped or downloaded tv-shows into folders\n"
             "Copyright (C) 2021 Michael Grossklos (mail@grossklos.com)\n"
             "Github: https://github.com/michaelgrossklos/sortier\n"
             "Discord: https://discord.gg/y5Kx2UGxhQ\n"
