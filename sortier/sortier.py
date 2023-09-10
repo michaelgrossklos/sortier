@@ -328,7 +328,7 @@ def start_logging(debug: str) -> logging.Logger:
 @click.option("--debug",
         default = False,
         help = "Turn debug mode on",
-        typw = click.BOOL
+        type = click.BOOL
         )
 @click.option("--delete-folders",
               default = False,
