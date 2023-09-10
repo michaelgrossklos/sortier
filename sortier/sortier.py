@@ -325,10 +325,10 @@ def start_logging(debug: str) -> logging.Logger:
         type = click.STRING,
         help = "Sets the language for season names"
         )
-@click.option(
-        "--debug",
+@click.option("--debug",
         default = False,
-        help = "Turn debug mode on"
+        help = "Turn debug mode on",
+        typw = click.BOOL
         )
 @click.option("--delete-folders",
               default = False,
