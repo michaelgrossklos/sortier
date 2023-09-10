@@ -195,7 +195,7 @@ class Sortier(object):
         :return: None
         """
         try:
-            os.chdir(home_path(self.conf['default_paths']['ORIGIN_PATH']))
+            os.chdir(self.conf['default_paths']['ORIGIN_PATH'])
             self.LOG.debug('Current working path: ' + os.getcwd())
         except FileNotFoundError as e:
             sys.exit(e)
