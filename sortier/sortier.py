@@ -46,8 +46,8 @@ class Sortier(object):
         self.config_file_path = os.path.join(Path.home(), '.config', 'sortier', 'sortier.json')
         self.conf = self.read_config_file()
         self.regex_season_episode = self.conf['REGEX']
-        self.origin_path = self.conf['default_paths']['ORIGIN_PATH']
-        self.destination_path = self.conf['default_paths']['DESTINATION_PATH']
+        self.origin_path = home_path(self.conf['default_paths']['ORIGIN_PATH'])
+        self.destination_path = home_path(self.conf['default_paths']['DESTINATION_PATH'])
         self.extensions = self.conf['FILE_EXTENSIONS']
         self.season = self.conf['LANGUAGES'][language]
         self.language = language
@@ -94,9 +94,9 @@ class Sortier(object):
         :return: None
         """
         if origin_path:
-            path = origin_path
+            path = home_path(origin_path)
         else:
-            path = destination_path
+            path = home_path(destination_path)
         
         self.LOG.debug("Trying to change path: " + path)
         
@@ -195,7 +195,7 @@ class Sortier(object):
         :return: None
         """
         try:
-            os.chdir(self.conf['default_paths']['ORIGIN_PATH'])
+            os.chdir(home_path(self.conf['default_paths']['ORIGIN_PATH']))
             self.LOG.debug('Current working path: ' + os.getcwd())
         except FileNotFoundError as e:
             sys.exit(e)
