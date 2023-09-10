@@ -326,7 +326,7 @@ def start_logging(debug: str) -> logging.Logger:
         help = "Sets the language for season names"
         )
 @click.option(
-        "--debug/--no-debug",
+        "--debug",
         default = False,
         help = "Turn debug mode on"
         )
